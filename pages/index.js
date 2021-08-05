@@ -1,17 +1,17 @@
-import { useState } from "react";
-import Image from "next/image";
+import { useState } from 'react'
+import Image from 'next/image'
 
-import { Container } from "@/components/container";
-import { BlogPost } from "@/components/blog-post";
-import { getAllFilesFrontMatter } from "@/lib/mdx";
+import { Container } from '@/components/container'
+import { BlogPost } from '@/components/blog-post'
+import { getAllFilesFrontMatter } from '@/lib/mdx'
 
 export default function Home({ posts }) {
   const recentPosts = posts
     .sort(
       (a, b) =>
-        Number(new Date(b.publishedOn)) - Number(new Date(a.publishedOn))
+        Number(new Date(b.publishedOn)) - Number(new Date(a.publishedOn)),
     )
-    .slice(0, 3);
+    .slice(0, 3)
 
   return (
     <Container>
@@ -38,11 +38,11 @@ export default function Home({ posts }) {
         ))}
       </div>
     </Container>
-  );
+  )
 }
 
 export async function getStaticProps() {
-  const posts = await getAllFilesFrontMatter("blog");
+  const posts = await getAllFilesFrontMatter('blog')
 
-  return { props: { posts } };
+  return { props: { posts } }
 }

@@ -1,19 +1,19 @@
-import { useState } from "react";
+import { useState } from 'react'
 
-import { Container } from "@/components/container";
-import { BlogPost } from "@/components/blog-post";
-import { getAllFilesFrontMatter } from "@/lib/mdx";
+import { Container } from '@/components/container'
+import { BlogPost } from '@/components/blog-post'
+import { getAllFilesFrontMatter } from '@/lib/mdx'
 
 export default function Home({ posts }) {
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState('')
   const filteredBlogPosts = posts
     .sort(
       (a, b) =>
-        Number(new Date(b.publishedOn)) - Number(new Date(a.publishedOn))
+        Number(new Date(b.publishedOn)) - Number(new Date(a.publishedOn)),
     )
     .filter((frontMatter) =>
-      frontMatter.title.toLowerCase().includes(searchValue.toLowerCase())
-    );
+      frontMatter.title.toLowerCase().includes(searchValue.toLowerCase()),
+    )
 
   return (
     <Container
@@ -43,11 +43,11 @@ export default function Home({ posts }) {
         ))}
       </div>
     </Container>
-  );
+  )
 }
 
 export async function getStaticProps() {
-  const posts = await getAllFilesFrontMatter("blog");
+  const posts = await getAllFilesFrontMatter('blog')
 
-  return { props: { posts } };
+  return { props: { posts } }
 }

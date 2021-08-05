@@ -1,7 +1,7 @@
-import Link from "next/link";
+import Link from 'next/link'
 
-import { Container } from "@/components/container";
-import Image from "next/image";
+import { Container } from '@/components/container'
+import Image from 'next/image'
 
 export default function NotFound() {
   return (
@@ -28,5 +28,5 @@ export default function NotFound() {
         </Link>
       </div>
     </Container>
-  );
+  )
 }
