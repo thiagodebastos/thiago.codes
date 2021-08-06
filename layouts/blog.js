@@ -10,7 +10,7 @@ function ViewCounter({ slug }) {
 
 // TODO extract these to config file
 const editUrl = (slug) =>
-  `https://github.com/thiago/thiago.codes/edit/main/data/blog/${slug}.mdx`
+  `https://github.com/thiagodebastos/thiago.codes/edit/master/data/blog/${slug}.mdx`
 const discussUrl = (slug) =>
   `https://mobile.twitter.com/search?q=${encodeURIComponent(
     `https://thiago.codes/blog/${slug}`,

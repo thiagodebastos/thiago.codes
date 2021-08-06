@@ -11,7 +11,7 @@ export function BlogPost({ title, slug, abstract, publishedOn, readTime }) {
       >
         <h3
           className="w-full mb-1 text-lg font-bold
-        md:text-xl"
+          md:text-xl"
         >
           {title}
         </h3>{' '}

@@ -33,8 +33,6 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const post = await getFileBySlug('blog', params.slug)
 
-  console.log(post)
-
   return {
     props: {
       ...post,
