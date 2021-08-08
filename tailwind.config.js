@@ -71,6 +71,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ["Inter", ...fontFamily.sans],
+        emphasis: ['Sriracha', ...fontFamily.serif],
       },
       typography: (theme) => ({
         DEFAULT: {
