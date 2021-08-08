@@ -1,11 +1,8 @@
-import { useState } from 'react'
-import Image from 'next/image'
-
 import { Container } from '@/components/container'
 import { BlogPost } from '@/components/blog-post'
 import { getAllFilesFrontMatter } from '@/lib/mdx'
 
-export default function Home({ posts }) {
+export default function HomePage({ posts }) {
   const recentPosts = posts
     .sort(
       (a, b) =>
@@ -15,21 +12,21 @@ export default function Home({ posts }) {
 
   return (
     <Container>
-      <div className="z-1 relative flex flex-col items-start justify-center w-full max-w-2xl mx-auto mb-16">
-        <h1 className="mb-4 text-3xl font-bold tracking-tight text-indigo-700 md:text-5xl dark:text-white">
+      <div className="relative flex flex-col items-start justify-center w-full mx-auto mb-16 max-w-prose z-1">
+        <h1 className="mb-4 text-3xl font-black text-indigo-500 md:text-5xl dark:text-white">
           Hi there, I&apos;m Thiago.
         </h1>
-        <h2 className="mb-16 text-gray-600 prose dark:text-gray-400">
-          I’m a full stack <code>JavaScript</code> developer specialising in
-          frontend UIs with <code>React</code>.
+        <h2 className="mb-16 text-gray-500 font-emphasis dark:text-gray-400">
+          I’m a full stack JavaScript developer specialising in Frontend UIs
+          with React.
         </h2>
         {!recentPosts.length && (
-          <p className="mb-4 text-gray-600 dark:text-gray-400">
+          <p className="mb-3 text-gray-600 dark:text-gray-400">
             No posts found.
           </p>
         )}
         {recentPosts && (
-          <h2 className="mb-4 text-3xl font-bold tracking-tight text-black md:text-4xl dark:text-white">
+          <h2 className="mb-4 text-sm font-bold tracking-widest text-purple-500 uppercase dark:text-white">
             Recent Posts
           </h2>
         )}
@@ -43,6 +40,10 @@ export default function Home({ posts }) {
 
 export async function getStaticProps() {
   const posts = await getAllFilesFrontMatter('blog')
+
+  // latestContent
+  // const latestContent = await getLatestContent({limit: 20})
+  // const popularContent = await getPopularContent({limit: 10})
 
   return { props: { posts } }
 }

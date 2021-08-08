@@ -1,13 +1,9 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import { useTheme } from 'next-themes'
 import NextLink from 'next/link'
-import { FixedBgImage } from './fixed-bg-image'
-import { UndrawMan } from './undraw-man'
-
-// import Footer from "@/components/Footer";
+import { FixedBgImage } from '@/components/fixed-bg-image'
 
 function Footer({ children }) {
   return <div>{children}</div>
@@ -31,7 +27,9 @@ export function Container(props) {
   }
 
   return (
-    <div className="bg-white dark:bg-black min-h-screen">
+    <div
+      className={`min-h-screen bg-white dark:bg-black transition-colors duration-300 ${props.className}`}
+    >
       <Head>
         <title>{meta.title}</title>
         <meta name="robots" content="follow, index" />
@@ -55,17 +53,17 @@ export function Container(props) {
           <meta property="article:published_time" content={meta.date} />
         )}
       </Head>
-      <nav className="flex items-center justify-between w-full max-w-4xl p-8 mx-auto my-0 text-gray-900 bg-white sticky-nav md:my-8 dark:bg-black bg-opacity-60 dark:text-gray-100">
+      <nav className="flex items-center justify-between w-full max-w-4xl px-0 py-8 mx-auto my-0 text-gray-900 md:mb-4 dark:text-gray-100">
         <a href="#skip" className="skip-nav">
           Skip to content
         </a>
         <div>
           <NextLink href="/">
             <a
-              className={`p-1 sm:p-4 ${
+              className={`p-1 sm:p-4 rounded-md  ${
                 router.asPath === '/'
                   ? 'text-green-600 dark:text-green-300'
-                  : 'text-gray-900 dark:text-gray-100'
+                  : 'text-gray-900 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-800'
               }`}
             >
               Home
@@ -73,9 +71,9 @@ export function Container(props) {
           </NextLink>
           <NextLink href="/blog">
             <a
-              className={`p-1 sm:p-4 ${
+              className={`p-1 sm:p-4 hover:bg-gray-50 rounded-md dark:hover:bg-gray-800 ${
                 router.asPath.includes('/blog')
-                  ? 'text-green-600 dark:text-green-300'
+                  ? 'text-green-600 dark:text-green-300 bg-green-50 hover:bg-green-50 dark:bg-gray-800'
                   : 'text-gray-900 dark:text-gray-100'
               }`}
             >
@@ -84,9 +82,9 @@ export function Container(props) {
           </NextLink>
           <NextLink href="/about">
             <a
-              className={`p-1 sm:p-4 ${
+              className={`p-1 sm:p-4 hover:bg-gray-50 rounded-md dark:hover:bg-gray-800 ${
                 router.asPath === '/about'
-                  ? 'text-green-600 dark:text-green-300'
+                  ? 'text-green-600 dark:text-green-300 bg-green-50 hover:bg-green-50 dark:bg-gray-800'
                   : 'text-gray-900 dark:text-gray-100'
               }`}
             >
@@ -97,7 +95,7 @@ export function Container(props) {
         <button
           aria-label="Toggle Dark Mode"
           type="button"
-          className="w-10 h-10 p-3 bg-gray-200 rounded dark:bg-gray-800"
+          className="w-10 h-10 p-3"
           onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
         >
           {mounted && (
@@ -106,7 +104,7 @@ export function Container(props) {
               viewBox="0 0 24 24"
               fill="currentColor"
               stroke="currentColor"
-              className="w-4 h-4 text-gray-800 dark:text-gray-200"
+              className="w-4 h-4 text-gray-800 dark:text-yellow-300"
             >
               {resolvedTheme === 'dark' ? (
                 <path
@@ -127,12 +125,10 @@ export function Container(props) {
           )}
         </button>
       </nav>
-      <main id="skip" className="z-1 relative flex flex-col justify-center">
+      <main id="skip" className="relative flex flex-col justify-center">
         {children}
         <Footer />
-        <div className="z-0">
-          <FixedBgImage imageUrl="/static/images/undraw_counting_stars_man.svg" />
-        </div>
+        <FixedBgImage imageUrl="/static/images/undraw_counting_stars_man.svg" />
       </main>
     </div>
   )

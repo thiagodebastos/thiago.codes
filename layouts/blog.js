@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import { parseISO, format } from 'date-fns'
 
 import { Container } from '@/components/container'
@@ -25,40 +24,22 @@ export default function BlogLayout({ children, frontMatter }) {
       date={new Date(frontMatter.publishedOn).toISOString()}
       type="article"
     >
-      <article className="flex flex-col justify-center items-start max-w-2xl mx-auto mb-16 w-full">
-        <h1 className="mb-4 text-3xl font-bold tracking-tight text-black md:text-5xl dark:text-white">
-          {frontMatter.title}
-        </h1>
-        <div className="flex flex-col items-start justify-between w-full mt-2 md:flex-row md:items-center">
-          <div className="flex items-center">
-            <Image
-              alt="Thiago de Bastos"
-              height={24}
-              width={24}
-              src="/avatar.jpg"
-              className="rounded-full"
-            />
-            <p className="ml-2 text-sm text-gray-700 dark:text-gray-300">
-              Thiago de Bastos on{' '}
-              {format(parseISO(frontMatter.publishedOn), 'dd MMMM, yyyy')}
-            </p>
-          </div>
-          <p className="mt-2 text-sm text-gray-500 min-w-32 md:mt-0">
-            {frontMatter.readingTime.text}
-          </p>
+      <article className="flex flex-col items-start justify-center w-full mx-auto mb-16 max-w-prose">
+        <div className="py-[112px] w-full">
+          <h1 className="text-2xl font-black text-center text-indigo-700 md:text-4xl lg:text-5xl lg:leading-relaxed dark:text-white">
+            {frontMatter.title}
+          </h1>
         </div>
-        <div className="w-full prose dark:prose-dark max-w-none">
+        <div className="flex justify-center text-sm text-gray-400 align-center">
+          <div>
+            {format(parseISO(frontMatter.publishedOn), 'dd MMMM, yyyy')}
+          </div>
+          <div className="ml-6">{frontMatter.readingTime.text}</div>
+        </div>
+        <div className="w-full mb-8 prose prose-sm sm:prose lg:prose-lg xl:prose-xl dark:prose-dark max-w-none">
           {children}
         </div>
         <div className="text-sm text-gray-700 dark:text-gray-300">
-          <a
-            href={discussUrl(frontMatter.slug)}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {'Discuss on Twitter'}
-          </a>
-          {` • `}
           <a
             href={editUrl(frontMatter.slug)}
             target="_blank"

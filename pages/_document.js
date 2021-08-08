@@ -5,7 +5,6 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          {/*
           <link
             rel="preload"
             href="/fonts/inter-var-latin.woff2"
@@ -52,8 +51,6 @@ class MyDocument extends Document {
             href="/static/favicons/safari-pinned-tab.svg"
             rel="mask-icon"
           />
-          <meta content="#ffffff" name="theme-color" />
-          <meta content="#ffffff" name="msapplication-TileColor" />
           <meta
             content="/static/favicons/browserconfig.xml"
             name="msapplication-config"
@@ -65,7 +62,7 @@ class MyDocument extends Document {
           <meta content="X" name="google-site-verification" />
           */}
         </Head>
-        <body className="bg-white dark:bg-black text-white dark:text-black">
+        <body className="text-white bg-white dark:bg-black dark:text-black">
           <Main />
           <NextScript />
         </body>
