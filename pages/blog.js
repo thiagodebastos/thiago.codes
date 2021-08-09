@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 import { Container } from '@/components/container'
-import { BlogPost } from '@/components/blog-post'
+import { BlogPostCard } from '@/components/blog-post-card'
 import { getAllFilesFrontMatter } from '@/lib/mdx'
 
 export default function Home({ posts }) {
@@ -39,7 +39,7 @@ export default function Home({ posts }) {
           </p>
         )}
         {filteredBlogPosts.map((frontMatter) => (
-          <BlogPost key={frontMatter.title} {...frontMatter} />
+          <BlogPostCard key={frontMatter.title} {...frontMatter} />
         ))}
       </div>
     </Container>

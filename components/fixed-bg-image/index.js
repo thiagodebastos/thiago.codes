@@ -1,1 +1,1 @@
-export { FixedBgImage } from './fixed-bg-image'
+export { FixedBgImage } from './main'

@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-export function BlogPost({ title, slug, abstract }) {
+export function BlogPostCard({ title, slug, abstract }) {
   return (
     <Link href={`/blog/${slug}`}>
       <a className="w-full group">

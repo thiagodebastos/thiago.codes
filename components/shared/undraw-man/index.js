@@ -1,1 +1,1 @@
-export { UndrawMan } from './undraw-man'
+export { UndrawMan } from './main'
