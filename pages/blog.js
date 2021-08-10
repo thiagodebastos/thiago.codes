@@ -20,8 +20,8 @@ export default function Home({ posts }) {
       title="Blog – Thiago de Bastos"
       description="Thoughts on the software industry, programming, tech, videography, music, and my personal life."
     >
-      <div className="flex flex-col items-start justify-center w-full max-w-2xl mx-auto mb-16">
-        <h1 className="mb-8 text-3xl font-bold text-indigo-500 md:text-5xl dark:text-white">
+      <div className="flex flex-col items-start justify-center w-full max-w-3xl mx-auto mb-16">
+        <h1 className="mb-8 text-3xl font-black text-indigo-600 md:text-5xl dark:text-white">
           Blog
         </h1>
         <div className="relative w-full mb-8">

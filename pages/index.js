@@ -12,11 +12,11 @@ export default function HomePage({ posts }) {
 
   return (
     <Container>
-      <div className="relative flex flex-col items-start justify-center w-full mx-auto mb-16 max-w-prose z-1">
-        <h1 className="mb-4 text-3xl font-black text-indigo-500 md:text-5xl dark:text-white">
+      <div className="relative flex flex-col items-start justify-center w-full max-w-3xl mx-auto mb-16 z-1">
+        <h1 className="mb-4 text-3xl font-black text-indigo-600 md:text-5xl dark:text-white">
           Hi there, I&apos;m Thiago.
         </h1>
-        <h2 className="mb-16 text-gray-500 font-emphasis dark:text-gray-400">
+        <h2 className="mb-16 text-indigo-400 font-emphasis dark:text-gray-400">
           I’m a full stack JavaScript developer specialising in Frontend UIs
           with React.
         </h2>
@@ -26,7 +26,7 @@ export default function HomePage({ posts }) {
           </p>
         )}
         {recentPosts && (
-          <h2 className="mb-4 text-sm font-bold tracking-widest text-purple-500 uppercase dark:text-white">
+          <h2 className="mb-4 text-sm font-bold tracking-widest text-pink-500 uppercase dark:text-white">
             Recent Posts
           </h2>
         )}

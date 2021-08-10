@@ -6,7 +6,7 @@ import Image from 'next/image'
 export default function NotFound() {
   return (
     <Container title="404 – Thiago de Bastos">
-      <div className="flex w-full flex-col justify-center items-start max-w-2xl mx-auto mb-16">
+      <div className="flex w-full flex-col justify-center items-start max-w-3xl mx-auto mb-16">
         <div className="w-full mb-8">
           <Image
             src={`/static/images/404.svg`}

@@ -24,7 +24,7 @@ export default function BlogLayout({ children, frontMatter }) {
       date={new Date(frontMatter.publishedOn).toISOString()}
       type="article"
     >
-      <article className="flex flex-col items-start justify-center w-full mx-auto mb-16 max-w-prose">
+      <article className="flex flex-col items-start justify-center w-full mx-auto mb-16 max-w-3xl">
         <div className="py-[112px] w-full">
           <h1 className="text-2xl font-black text-center text-indigo-700 md:text-4xl lg:text-5xl lg:leading-relaxed dark:text-white">
             {frontMatter.title}
