@@ -3,9 +3,9 @@ import { parseISO, format } from 'date-fns'
 import { Container } from '@/components/container'
 
 // TODO implement this component
-function ViewCounter({ slug }) {
-  return <div># views for ${slug}</div>
-}
+//function ViewCounter({ slug }) {
+//  return <div># views for ${slug}</div>
+//}
 
 // TODO extract these to config file
 const editUrl = (slug) =>
@@ -15,7 +15,7 @@ const discussUrl = (slug) =>
     `https://thiago.codes/blog/${slug}`,
   )}`
 
-export default function BlogLayout({ children, frontMatter }) {
+export default function BlogLayout({ children, frontMatter, tags }) {
   return (
     <Container
       title={`${frontMatter.title} – Thiago de Bastos`}
@@ -24,17 +24,19 @@ export default function BlogLayout({ children, frontMatter }) {
       date={new Date(frontMatter.publishedOn).toISOString()}
       type="article"
     >
-      <article className="flex flex-col items-start justify-center w-full mx-auto mb-16 max-w-3xl">
+      <article className="flex flex-col items-start justify-center w-full max-w-3xl mx-auto mb-16">
         <div className="py-[112px] w-full">
           <h1 className="text-2xl font-black text-center text-indigo-700 md:text-4xl lg:text-5xl lg:leading-relaxed dark:text-white">
             {frontMatter.title}
           </h1>
         </div>
         <div className="flex justify-center text-sm text-gray-400 align-center">
-          <div>
-            {format(parseISO(frontMatter.publishedOn), 'dd MMMM, yyyy')}
+          <div className="mr-6">
+            {frontMatter.publishedOn
+              ? format(parseISO(frontMatter.publishedOn), 'dd MMMM, yyyy')
+              : 'DRAFT'}
           </div>
-          <div className="ml-6">{frontMatter.readingTime.text}</div>
+          <div>{frontMatter.readingTime.text}</div>
         </div>
         <div className="w-full mb-8 prose prose-sm sm:prose lg:prose-lg xl:prose-xl dark:prose-dark max-w-none">
           {children}

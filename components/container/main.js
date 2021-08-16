@@ -28,7 +28,7 @@ export function Container(props) {
 
   return (
     <div
-      className={`min-h-screen bg-white dark:bg-black transition-colors duration-300 ${props.className}`}
+      className={`min-h-screen bg-white dark:bg-black px-8 sm:px-12 transition-colors duration-300 ${props.className}`}
     >
       <Head>
         <title>{meta.title}</title>
@@ -53,14 +53,14 @@ export function Container(props) {
           <meta property="article:published_time" content={meta.date} />
         )}
       </Head>
-      <nav className="flex items-center justify-between w-full px-0 py-8 mx-auto my-0 text-gray-900 max-w-3xl md:mb-4 dark:text-gray-100">
+      <nav className="flex items-center justify-between w-full max-w-3xl px-0 py-8 mx-auto my-0 text-gray-900 md:mb-4 dark:text-gray-100">
         <a href="#skip" className="skip-nav">
           Skip to content
         </a>
         <div>
           <NextLink href="/">
             <a
-              className={`p-1 pl-0 pt-4 pr-4 pb-4 rounded-md font-emphasis  ${
+              className={`font-emphasis mr-8  ${
                 router.asPath === '/'
                   ? 'text-green-600 dark:text-green-300'
                   : 'text-gray-900 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-800'
@@ -71,7 +71,7 @@ export function Container(props) {
           </NextLink>
           <NextLink href="/blog">
             <a
-              className={`p-1 sm:p-4 hover:bg-gray-50 rounded-md dark:hover:bg-gray-800 ${
+              className={`p-1 p-4 mr-2 hover:bg-gray-50 rounded-md dark:hover:bg-gray-800 ${
                 router.asPath.includes('/blog')
                   ? 'text-green-600 dark:text-green-300 bg-green-50 hover:bg-green-50 dark:bg-gray-800'
                   : 'text-gray-900 dark:text-gray-100'
@@ -82,7 +82,7 @@ export function Container(props) {
           </NextLink>
           <NextLink href="/about">
             <a
-              className={`p-1 sm:p-4 hover:bg-gray-50 rounded-md dark:hover:bg-gray-800 ${
+              className={`p-1 p-4 hover:bg-gray-50 rounded-md dark:hover:bg-gray-800 ${
                 router.asPath === '/about'
                   ? 'text-green-600 dark:text-green-300 bg-green-50 hover:bg-green-50 dark:bg-gray-800'
                   : 'text-gray-900 dark:text-gray-100'
