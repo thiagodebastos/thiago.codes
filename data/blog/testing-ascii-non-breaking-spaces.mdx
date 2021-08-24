@@ -1,0 +1,32 @@
+---
+title: Testing and ASCII space vs non-breaking space
+seoTitle: Testing and ASCII space vs non-breaking space
+abstract: Non-breaking space ASCII 160 bites back
+isPublished: false
+tags: javascript, tdd, gotchya, til
+publishedOn: 
+image: ''
+layout: Article
+---
+
+Today at work I came across a failing test that made me wonder if the previous
+developer had just given up and left it fail.  The error was a weird one, it
+looked something like:
+
+```diff
+- expect('Some string').toEqual('Some string')
++ expect('Some string').toEqual('Some string')
+```
+
+The error highlighting was more useful as it highlighted the spaces. This was
+enough of a clue to point me in the right direction. It turns out that the
+spaces used here were not your typical space (ASCII 32), but non-breaking space
+(ASCII 160). I've not had the time to track down the exact source of this
+blasphemous code, but I suspect it has something to do with `Intl`.
+
+To get the test working, I pasted ASCII 160 in `toEqual()` and left a comment
+to warn the next developer to stumble across this issue.
+I've also made a note in my journal and set aside some time to speak to other
+team members about where this is coming from and if there is a case to change 
+this behaviour.
+
