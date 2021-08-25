@@ -182,7 +182,7 @@ html {
 }
 
 .mdx-marker {
-  @apply block px-4 -mx-4 bg-gray-100 border-l-4 border-blue-500 dark:bg-gray-800;
+  @apply block px-4 -mx-6 bg-gray-100 border-l-4 border-blue-500 dark:bg-gray-700;
 }
 
 /* Remove Safari input shadow on mobile */
