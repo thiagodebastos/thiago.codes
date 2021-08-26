@@ -10,12 +10,8 @@ import { Container } from '@/components/container'
 // TODO extract these to config file
 const editUrl = (slug) =>
   `https://github.com/thiagodebastos/thiago.codes/edit/master/data/blog/${slug}.mdx`
-const discussUrl = (slug) =>
-  `https://mobile.twitter.com/search?q=${encodeURIComponent(
-    `https://thiago.codes/blog/${slug}`,
-  )}`
 
-export default function BlogLayout({ children, frontMatter, tags }) {
+export default function BlogLayout({ children, frontMatter }) {
   return (
     <Container
       title={`${frontMatter.title} – Thiago de Bastos`}

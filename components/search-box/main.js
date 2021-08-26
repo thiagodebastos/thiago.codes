@@ -23,5 +23,5 @@ SearchBox.propTypes = {
   searchTerm: PropTypes.string,
   placeholder: PropTypes.string,
   handleChange: PropTypes.func.isRequired,
-  totalResults: PropTypes.func,
+  totalResults: PropTypes.number,
 }
