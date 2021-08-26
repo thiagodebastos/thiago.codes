@@ -1,13 +1,185 @@
 ---
-title: Array.prototype.every()
-seoTitle: Uses for Array.every() in Javascript
-abstract: I decided to create the search component for this website from scratch.
-  In this article, I go through the challenges I faced and how Array.every() came to the rescue.
-isPublished: false
+title: Powerful array filtering with Javascript's some() and every()
+seoTitle: Powerful array filtering with Javascript's some() and every()
+abstract: How to filter arrays with some() and every() in Javascript
+series: js-array-methods
+isPublished: true
 tags: javascript
-publishedOn: 
+publishedOn: '2021-08-26'
 image: ''
 layout: Article
 ---
 
-## `every()`
+## Basics
+
+Javascript comes packed with many built-in array manipulation methods. Two of
+my favourites, particularly when used in combination, are the `some()` and
+`every()` methods.
+
+In this articule we will explore how we can not only clean up our code by using
+these built-in methods instead of loops, but also unite them to create a
+combined filter function that will filter by *some* strings and *every* tag.
+
+### Pre-requisites
+
+* basic understanding of loops in Javascript.
+* a quick skim over the concept of
+  [Truthy](https://developer.mozilla.org/en-US/docs/Glossary/Truthy) and
+  [Falsy](https://developer.mozilla.org/en-US/docs/Glossary/Falsy) values in
+  Javascript.
+
+---
+
+### `some()`
+
+The `some()` method takes a test function as a parameter and returns `true` if
+any element in an array passed into the test function results in a *Truthy*
+return value. It could be thought of as an `OR` operator: if a OR b OR c is true.
+
+For example if we wanted to test that any number in an array was an even number,
+we could implement it as follows:
+
+```js
+const array1 = [1,3,6,7]
+const array2 = [2,4,6,128]
+
+// test function
+function isEven(num) {
+  return num % 2 === 0;
+}
+
+
+array1.every(isEven) // -> true since 6 passes
+array2.every(isEven) // -> true since all pass
+```
+
+
+### `every()`
+
+The `every()` method takes a test function as a parameter and returns `true` if
+*all* elements in the array result in a *Truthy* return value from the test
+function. `every()` returns `false` if *any* element of the array results in a
+*Falsy* return value. 
+
+For example, if we want to test that every number in an array is an even number
+we implement it like this:
+
+```js
+const array1 = [2,4,6,7]
+const array2 = [2,4,6,128]
+
+// test function
+function isEven(num) {
+  return num % 2 === 0;
+}
+
+array1.every(isEven) // -> false - fails at 7
+array2.every(isEven) // -> true
+```
+
+
+## Real world use case
+
+A more complex example, and something you're likely to come across out in the
+wild would be in implementing search and filtering. The `SearchBox` component on
+this website relies on several filters. One filter searches the blog titles for
+the entered searchstring, and the other searches blog posts for a combination
+of selected tags (I still have some work to do to search blog post content).
+
+### Searching blog post content with string search using `some()`
+
+One of the next features I want to implement is searching blog post content by
+strings entered into the `SearchBox`.  To achieve this, we will do the
+following:
+
+* create a test function to check if any word exists in the blog content
+
+```js
+const searchTerm = "javascript every"
+
+arrayOfContent = [
+  {
+    id: 1,
+    content: "something about stuff including javascript and the term every"
+  },
+  {
+    id: 2,
+    content: "abc"
+  },
+  {
+    id: 3,
+    content: "javascript foo bar"
+   },
+  {
+    id: 4,
+    content: "every foo bar"
+  },
+  {
+    id: 5,
+    content: "foo bar baz"
+  }
+]
+
+arrayOfContent.some(el => arrayOfContent.includes(el))
+// returns content with id 1, 3, 4
+```
+
+### Searching by multiple tag selection using `every()`
+
+The filter function powering the `SearchBox` component used on this blog
+implements the `every()` method to filter blog posts by tag. When a user clicks
+on a tag below the search box, only blog posts containing that tag are
+rendered. If more than one tag is selected, then only blog posts containg
+*every* tag is shown.
+
+Below is a simplified version of what is going on:
+
+```js
+const blogPosts = [
+  {
+    id: 1,
+    title: 'array methods',
+    tags: ['javascript', 'arrays']
+  },
+  {
+    id: 2,
+    title: 'ASCII spaces',
+    tags: ['misc']
+  },
+  {
+    id:3,
+    title: 'How to debug NodeJS in Vim',
+    tags: ['javascript']
+  },
+]
+
+const selectedTags = ['javascript', 'arrays']
+
+function checkArrayHasAllElements(array, elementsChecked) {
+  // for every element in the array
+  return array.every(
+    // return true if the element exists in elementsChecked
+    element => elementsChecked.includes(element)
+  )
+}
+
+const filteredBlogPosts = 
+  blogPosts.filter(
+    (post) => checkArrayHasAllElements(post.tags)
+  )
+// only one post contains both selected tags:
+// -> [ { id:1, title: 'array methods', tags: [ 'javascript', 'arrays' ] } ]
+
+```
+
+Note that the only returned blog post is post `id: 1` since that is the
+only post containing both tags in `selectedTags`.
+
+I don't know about you, but due to naming, this was a bit confusing for me at
+first!
+
+## Some gotchyas
+
+* `every()` will return `true` if passed an empty array.
+* beware of some quirks with Javascript's Truthy values, particularly empty
+  arrays `[]`, empty objects `{}`, the string `"0"` and the string `"false"`.
