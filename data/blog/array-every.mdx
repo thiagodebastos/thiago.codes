@@ -34,9 +34,12 @@ combined filter function that will filter by *some* strings and *every* tag.
 
 The `some()` method takes a test function as a parameter and returns `true` if
 any element in an array passed into the test function results in a *Truthy*
-return value. It could be thought of as an `OR` operator: if a OR b OR c is true.
+return value. 
 
-For example if we wanted to test that any number in an array was an even number,
+> `some()` could be thought of as an `OR` operator:
+> pass if a OR b OR c is true.
+
+For example if we wanted to test that *any* number in an array was an even number,
 we could implement it as follows:
 
 ```js
@@ -61,7 +64,10 @@ The `every()` method takes a test function as a parameter and returns `true` if
 function. `every()` returns `false` if *any* element of the array results in a
 *Falsy* return value. 
 
-For example, if we want to test that every number in an array is an even number
+> `every()` could be thought of as an `AND` operator:
+> pass if a AND b AND c is true.
+
+For example, if we want to test that *every* number in an array is an even number
 we implement it like this:
 
 ```js
@@ -91,8 +97,6 @@ of selected tags (I still have some work to do to search blog post content).
 One of the next features I want to implement is searching blog post content by
 strings entered into the `SearchBox`.  To achieve this, we will do the
 following:
-
-* create a test function to check if any word exists in the blog content
 
 ```js
 const searchTerm = "javascript every"
@@ -130,9 +134,10 @@ The filter function powering the `SearchBox` component used on this blog
 implements the `every()` method to filter blog posts by tag. When a user clicks
 on a tag below the search box, only blog posts containing that tag are
 rendered. If more than one tag is selected, then only blog posts containg
-*every* tag is shown.
+*every* tag is shown. This is testing if one array is a *subset* of another.
 
-Below is a simplified version of what is going on:
+Below is a simplified version of what is going on, checking if an array is a
+subset of another:
 
 ```js
 const blogPosts = [
@@ -155,18 +160,16 @@ const blogPosts = [
 
 const selectedTags = ['javascript', 'arrays']
 
-function checkArrayHasAllElements(array, elementsChecked) {
+function isSubset(array1, array2) {
   // for every element in the array
-  return array.every(
-    // return true if the element exists in elementsChecked
-    element => elementsChecked.includes(element)
+  return array2.every(
+    // return true if the element exists in array1
+    element => array1.includes(element)
   )
 }
 
 const filteredBlogPosts = 
-  blogPosts.filter(
-    (post) => checkArrayHasAllElements(post.tags)
-  )
+  blogPosts.filter( post => isSubset(post.tags, selectedTags))
 // only one post contains both selected tags:
 // -> [ { id:1, title: 'array methods', tags: [ 'javascript', 'arrays' ] } ]
 
