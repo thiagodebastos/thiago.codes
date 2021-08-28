@@ -1,3 +1,6 @@
+![](https://img.shields.io/github/deployments/thiagodebastos/thiago.codes/production?label=vercel&logo=vercel&logoColor=white)
+![](https://img.shields.io/website?url=https%3A%2F%2Fthiago.codes)
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
