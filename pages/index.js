@@ -3,12 +3,6 @@ import { BlogPostCard } from '@/components/blog-post-card'
 import { getAllFilesFrontMatter } from '@/lib/mdx'
 
 export default function HomePage({ posts }) {
-  const recentPosts = posts
-    .sort(
-      (a, b) =>
-        Number(new Date(b.publishedOn)) - Number(new Date(a.publishedOn)),
-    )
-    .slice(0, 3)
 
   return (
     <Container>
@@ -20,17 +14,17 @@ export default function HomePage({ posts }) {
           I’m a full stack JavaScript developer specialising in Frontend UIs
           with React.
         </h2>
-        {!recentPosts.length && (
+        {!posts.length && (
           <p className="mb-3 text-gray-600 dark:text-gray-400">
             No posts found.
           </p>
         )}
-        {recentPosts && (
+        {posts && (
           <h2 className="mb-4 text-sm font-bold tracking-widest text-pink-500 uppercase dark:text-white">
             Recent Posts
           </h2>
         )}
-        {recentPosts.map((frontMatter) => (
+        {posts.map((frontMatter) => (
           <BlogPostCard key={frontMatter.title} {...frontMatter} />
         ))}
       </div>
@@ -41,9 +35,12 @@ export default function HomePage({ posts }) {
 export async function getStaticProps() {
   const posts = await getAllFilesFrontMatter('blog')
 
-  // latestContent
-  // const latestContent = await getLatestContent({limit: 20})
-  // const popularContent = await getPopularContent({limit: 10})
+  const recentPosts = posts
+    .sort(
+      (a, b) =>
+        Number(new Date(b.publishedOn)) - Number(new Date(a.publishedOn)),
+    )
+    .slice(0, 3)
 
-  return { props: { posts } }
+  return { props: { posts: recentPosts } }
 }

@@ -1,21 +1,25 @@
-import { MDXRemote } from 'next-mdx-remote'
+import { useMemo } from 'react'
+import { getMDXComponent } from 'mdx-bundler/client';
 
+import { MDXComponents } from '@/components/mdx-components'
 import { getFiles, getFileBySlug } from '@/lib/mdx'
 import BlogLayout from '@/layouts/blog'
-import MDXComponents from '@/components/mdx-components'
 
-export default function Blog({ mdxSource, frontMatter }) {
+
+export default function Blog({ code, frontMatter }) {
+  const Component = useMemo(() => getMDXComponent(code), [code]);
+
   return (
     <BlogLayout frontMatter={frontMatter}>
-      <MDXRemote
-        {...mdxSource}
+      <Component
         components={{
           ...MDXComponents,
         }}
       />
     </BlogLayout>
-  )
+  );
 }
+
 
 export async function getStaticPaths() {
   const posts = await getFiles('blog')
