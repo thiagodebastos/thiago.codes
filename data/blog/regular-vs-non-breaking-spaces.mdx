@@ -21,7 +21,7 @@ NOTE: Each `>` is a command to be executed in the REPL.
 I've highlighted parts to take note of.
 
 
-```shell{6,13,27-28}
+```bash
 ➜  ~ node
 Welcome to Node.js v16.7.0.
 Type ".help" for more information.
@@ -62,7 +62,8 @@ is even less obvious when the spaces exist in a sentence, or when the text
 exists in html as something like:
 
 ```html
-<span>This&nbsp;will&nbsp;bite!</span>
+<span>This\u00a0will\u00a0bite!</span>
+<!--I had to change the above from &nbsp; because it broke this parser!-->
 ```
 
 When this is rendered by a React testing library, the `&nbsp;` will appear
@@ -81,3 +82,4 @@ For example:
 ```js
 assert.strictEqual(expected, "Don't\u00a0break\u00a0me")
 ```
+
