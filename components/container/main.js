@@ -128,7 +128,7 @@ export function Container(props) {
       <main id="skip" className="relative flex flex-col justify-center">
         {children}
         <Footer />
-        <FixedBgImage imageUrl="/static/images/undraw_counting_stars_man.svg" />
+        {mounted && <FixedBgImage imageUrl="/static/images/undraw_counting_stars_man.svg" />}
       </main>
     </div>
   )
