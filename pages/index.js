@@ -1,6 +1,7 @@
 import { Container } from '@/components/container'
 import { BlogPostCard } from '@/components/blog-post-card'
 import { getAllFilesFrontMatter } from '@/lib/mdx'
+import Link from 'next/link'
 
 export default function HomePage({ posts }) {
 
@@ -20,14 +21,32 @@ export default function HomePage({ posts }) {
           </p>
         )}
         {posts && (
-          <h2 className="mb-4 text-sm font-bold tracking-widest text-pink-500 uppercase dark:text-white">
+          <h2 className="mb-4 text-sm font-bold tracking-widest text-gray-500 uppercase dark:text-white">
             Recent Posts
           </h2>
         )}
         {posts.map((frontMatter) => (
           <BlogPostCard key={frontMatter.title} {...frontMatter} />
         ))}
+        <div className="link-container">
+          <Link href="/blog"passHref={true}>
+            <a className="text-pink-500">All posts <span className="link-arrow">-&gt;</span></a>
+          </Link>
+        </div>
       </div>
+
+      <style jsx>{`
+        .link-arrow {
+          transition: .25s ease-out;
+          display: inline-block;
+        }
+
+        .link-container:hover .link-arrow {
+          transform: translateX(10px);
+          font-weight: bold;
+        }
+      `}</style>
+
     </Container>
   )
 }
