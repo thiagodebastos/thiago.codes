@@ -35,9 +35,9 @@ export default function Home({ posts }) {
     tags: (tags) =>
       !!tags
         ? checkElementsAgainstArray({
-            array: tags,
-            elements: Array.from(searchTags),
-          })
+          array: tags,
+          elements: Array.from(searchTags),
+        })
         : true,
   }
 
@@ -103,6 +103,13 @@ export default function Home({ posts }) {
 
 export async function getStaticProps() {
   const posts = await getAllFilesFrontMatter('blog')
+  const publishedPosts = posts.filter(p => p.isPublished)
+  const isDevelopment = process.env.NODE_ENV === 'development'
+  console.log(process.env.NODE_ENV)
 
-  return { props: { posts } }
+  return {
+    props: {
+      posts: isDevelopment ? posts : publishedPosts
+    }
+  }
 }
