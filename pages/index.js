@@ -29,7 +29,7 @@ export default function HomePage({ posts }) {
           <BlogPostCard key={frontMatter.title} {...frontMatter} />
         ))}
         <div className="link-container">
-          <Link href="/blog"passHref={true}>
+          <Link href="/blog" passHref={true}>
             <a className="text-pink-500">All posts <span className="link-arrow">-&gt;</span></a>
           </Link>
         </div>
@@ -53,8 +53,10 @@ export default function HomePage({ posts }) {
 
 export async function getStaticProps() {
   const posts = await getAllFilesFrontMatter('blog')
+  const isDevelopment = process.env.NODE_ENV === 'development'
 
   const recentPosts = posts
+    .filter(p => isDevelopment ? true : p.isPublished)
     .sort(
       (a, b) =>
         Number(new Date(b.publishedOn)) - Number(new Date(a.publishedOn)),
