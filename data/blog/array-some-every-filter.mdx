@@ -13,16 +13,22 @@ layout: Article
 ## Basics
 
 Javascript comes packed with many built-in array manipulation methods. Two of
-my favourites, particularly when used in combination, are the `some()` and
+my favourites, particularly when used in combination with `filter()`, are the `some()` and
 `every()` methods.
 
-In this article we will explore how we can not only clean up our code by using
-these built-in methods instead of loops, but also unite them to create a
-combined filter function that will filter by *some* strings and *every* tag.
+> The some and every methods exist on the array object, for example `Array.prototype.some()`.
+
+In this article we will explore the `some()` and `every()` methods by first
+writing them from scratch, and then combining them `filter()` to search for
+blog posts by keywords and/or tags.
+
+By understanding how these methods are implemented, you will gain an appreciation
+Javascript's native array methods to write cleaner, earier to read code.
 
 ### Pre-requisites
 
-* basic understanding of loops in Javascript.
+* basic understanding of `for` loop in Javascript
+* basic understanding of `Array.prototype.filter()`
 * a quick skim over the concept of
   [Truthy](https://developer.mozilla.org/en-US/docs/Glossary/Truthy) and
   [Falsy](https://developer.mozilla.org/en-US/docs/Glossary/Falsy) values in
@@ -42,14 +48,27 @@ return value.
 Before we go ahead and use the `some()` method, let's go ahead and implement it
 ourselves without using any other array methods.
 
+To implement a basic version of the `some()` method, we must write a function that:
+
+1. takes an array and a test function as parameters
+2. loop through the array
+3. pass an element of the array in each loop to the test function
+4. if the test function returns true, break out of the loop and return `true`
+5. otherwise if no elements of the array pass the test function, return `false`
+
 For example if we wanted to test that *any* number in an array was an even number,
 we could implement it as follows:
+
+1. Write our test function:
 
 ```js
 function isEven(num) {
   return num % 2 === 0
 }
+```
 
+2. Implement our own version of `some()`:
+```js
 function some(array, test) {
    // loop through each element of the array
    for(let i = 0; i < array.length; i ++) {
@@ -88,12 +107,10 @@ function. `every()` returns `false` if *any* element of the array results in a
 > `every()` could be thought of as an `AND` operator:
 > pass if a AND b AND c is true.
 
-Let's start by implementing our own `every()` function from scratch:
+Let's start by implementing our own `every()` function from scratch, using the same
+`isEven()` function we created previously:
 
 ```js
-const array1 = [2,4,6,7]
-const array2 = [2,4,6,128]
-
 function every(array, testFn) {
   // loop through every element
   for(let i = 0; i < array.length; i ++) {
@@ -106,6 +123,9 @@ function every(array, testFn) {
     return true
   } 
 }
+
+const array1 = [2,4,6,7]
+const array2 = [2,4,6,128]
 
 every(array1, isEven) // -> false since 7 fails
 every(array2, isEven) // -> true since all pass
@@ -121,17 +141,59 @@ array2.every(isEven) // -> true since all pass
 
 ## Real world use case
 
-A more complex example, and something you're likely to come across out in the
-wild would be in implementing search and filtering. The `SearchBox` component on
-this website relies on several filters. One filter searches the blog titles for
-the entered searchstring, and the other searches blog posts for a combination
-of selected tags (I still have some work to do to search blog post content).
+ The `SearchBox` component on this website relies on several filters. One
+ filter searches the blog titles for the entered searchstring, and the other
+ searches blog posts for a combination of selected tags (I still have some work
+ to do to search blog post content).
 
 ### Searching blog post content with string search using `some()`
 
 One of the next features I want to implement is searching blog post content by
 strings entered into the `SearchBox`.  To achieve this, we will do the
-following:
+following. To check if a 'sentence' contains a 'word', we could use `some()`, but
+first we would need to convert the string into an array of words, since the `some()`
+method exists in Javascript's `Array` object, and not on `String`.
+
+Let's start with something simple first - let's test if a sentence contains a word:
+
+```js
+const word = "funny"
+const sentence1 = "This sentence is serious"
+const sentence2 = "This sentence is funny"
+
+// convert string into an array of strings, separated at each space
+const sentence1AsArray = sentence1.split(" ")
+const sentence2AsArray = sentence1.split(" ")
+
+// check if `word` exists in each array, using `contains()`
+sentence1AsArray.contains(word) // -> false
+sentence2AsArray.contains(word) // -> true
+
+```
+
+Now let's test if a sentence contains multiple words:
+
+```js
+const words = "peas carrots"
+const sentence1 = "I like carrots"
+const sentence2 = "I like peas and carrots"
+const sentence3 = "I like water"
+
+// convert string into an array of strings, separated at each space
+const sentence1AsArray = sentence1.split(" ")
+const sentence2AsArray = sentence2.split(" ")
+const sentence3AsArray = sentence3.split(" ")
+
+// check if all words exist in a sentence
+words.some(word => sentence1AsArray.contains(word)) // true
+words.some(word => sentence2AsArray.contains(word)) // true
+words.some(word => sentence3AsArray.contains(word)) // false
+
+// check if all words exist in a sentence
+words.every(word => sentence1AsArray.contains(word)) // false
+words.every(word => sentence2AsArray.contains(word)) // true
+words.every(word => sentence3AsArray.contains(word)) // false
+```
 
 ```js
 const searchTerm = "javascript every"
@@ -159,8 +221,6 @@ arrayOfContent = [
   }
 ]
 
-arrayOfContent.some(el => arrayOfContent.includes(el))
-// returns content with id 1, 3, 4
 ```
 
 ### Searching by multiple tag selection using `every()`
