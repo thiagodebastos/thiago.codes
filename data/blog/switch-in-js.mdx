@@ -1,0 +1,37 @@
+---
+title: Switch, Case and Break
+seoTitle: Switch, Case and Break in Javascript
+abstract: Clean up those if statements with switch
+isPublished: false
+tags: javascript
+publishedOn: '2021-09-03'
+image: ''
+layout: Article
+---
+
+<Callout title="What you will learn">
+  * How to use `switch` to execute conditional logic
+  * The differences between `if` and `switch`
+  * When to use `break` vs `return`
+</Callout>
+
+
+```js:"food.ks"
+
+const foodBowl = "Papaya Salad";
+
+let isHealthy;
+
+switch(foodBowl) {
+    case "Cheese Burger":
+      isHealthy = false;
+    case "Fatty Pizza":
+      isHealthy = false;
+      break;
+    case "Papaya Salad":
+      isHealthy = true;
+      break;
+    default:
+      isHealthy = false;
+  }
+```
