@@ -103,6 +103,9 @@ module.exports = {
               fontStyle: 'normal',
               letterSpacing: '-0.25px',
             },
+            strong:{
+              color: 'unset'
+            },
             table: {
               display: 'block',
               overflowY: 'auto',
@@ -138,7 +141,6 @@ module.exports = {
                 '&:before': { backgroundColor: theme('colors.gray.500') },
               },
             },
-            strong: { color: theme('colors.gray.300') },
             thead: {
               color: theme('colors.gray.100'),
             },
