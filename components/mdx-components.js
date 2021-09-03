@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import Image from 'next/image'
 
+import { Callout } from '@/components/callout'
+
 const CustomLink = (props) => {
   const href = props.href
   const isInternalLink = href && (href.startsWith('/') || href.startsWith('#'))
@@ -18,5 +20,6 @@ const CustomLink = (props) => {
 
 export const MDXComponents = {
   Image,
+  Callout,
   a: CustomLink,
 }

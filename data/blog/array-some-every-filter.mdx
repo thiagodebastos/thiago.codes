@@ -10,6 +10,21 @@ image: ''
 layout: Article
 ---
 
+<Callout title="What you will learn">
+  In this article we will explore the `some()` and `every()` methods by first
+  writing them from scratch, and then combining them `filter()` to search for
+  blog posts by keywords and/or tags.
+</Callout>
+
+<Callout title="Prerequisites" colour="info">
+* basic understanding of `for` loop in Javascript
+* basic understanding of `Array.prototype.filter()`
+* a quick skim over the concept of
+  [Truthy](https://developer.mozilla.org/en-US/docs/Glossary/Truthy) and
+  [Falsy](https://developer.mozilla.org/en-US/docs/Glossary/Falsy) values in
+  Javascript.
+</Callout>
+
 ## Basics
 
 Javascript comes packed with many built-in array manipulation methods. Two of
@@ -19,22 +34,10 @@ my favourites, particularly when used in combination with `filter()`, are the
 > The some and every methods exist on the array object, for example
 > `Array.prototype.some()`.
 
-In this article we will explore the `some()` and `every()` methods by first
-writing them from scratch, and then combining them `filter()` to search for
-blog posts by keywords and/or tags.
-
 By understanding how these methods are implemented, you will gain an
 appreciation for Javascript's native array methods to write cleaner, earier to
 read code.
 
-### Pre-requisites
-
-* basic understanding of `for` loop in Javascript
-* basic understanding of `Array.prototype.filter()`
-* a quick skim over the concept of
-  [Truthy](https://developer.mozilla.org/en-US/docs/Glossary/Truthy) and
-  [Falsy](https://developer.mozilla.org/en-US/docs/Glossary/Falsy) values in
-  Javascript.
 
 ---
 
@@ -44,8 +47,10 @@ The `some()` method takes a test function as a parameter and returns `true` if
 any element in an array passed into the test function results in a *Truthy*
 return value. 
 
-> `some()` could be thought of as an `OR` operator:
-> pass if a OR b OR c is true.
+<Callout colour="info">
+  `some()` could be thought of as an `OR` operator:
+  pass if a OR b OR c is true.
+</Callout>
 
 Before we go ahead and use the `some()` method, let's go ahead and implement it
 ourselves without using any other array methods.
@@ -106,9 +111,10 @@ The `every()` method takes a test function as a parameter and returns `true` if
 function. `every()` returns `false` if *any* element of the array results in a
 *Falsy* return value. 
 
-> `every()` could be thought of as an `AND` operator:
-> pass if a AND b AND c is true.
-
+<Callout colour="info">
+  `every()` could be thought of as an `AND` operator:
+  pass if a AND b AND c is true.
+</Callout>
 Let's start by implementing our own `every()` function from scratch, using the same
 `isEven()` function we created previously:
 
@@ -250,8 +256,8 @@ only post containing both tags in `selectedTags`.
 I don't know about you, but due to naming, this was a bit confusing for me at
 first!
 
-## Some gotchyas
-
-* `every()` will return `true` if passed an empty array.
-* beware of some quirks with Javascript's Truthy values, particularly empty
-  arrays `[]`, empty objects `{}`, the string `"0"` and the string `"false"`.
+<Callout colour="warning" title="gotchyas">
+  * `every()` will return `true` if passed an empty array.
+  * beware of some quirks with Javascript's Truthy values, particularly empty
+    arrays `[]`, empty objects `{}`, the string `"0"` and the string `"false"`.
+</Callout>

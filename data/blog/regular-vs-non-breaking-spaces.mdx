@@ -16,7 +16,9 @@ two identical strings but failing at the spaces.
 To replicate this issue, you can fire up the [NodeJS
 REPL](https://nodejs.dev/learn/how-to-use-the-nodejs-repl) and follow along.
 
-NOTE: Each `>` is a command to be executed in the REPL.
+<Callout title="Note" colour="info">
+  Each `>` is a command to be executed in the REPL.
+</Callout>
 
 I've highlighted parts to take note of.
 
@@ -54,8 +56,10 @@ Uncaught AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
 }
 ```
 
-> In HTML, `&nbsp;`'s are used to prevent two words from breaking or wrapping
-at the end of a line.
+<Callout colour="info">
+  In HTML, `&nbsp;`'s are used to prevent two words from breaking or wrapping
+  at the end of a line.
+</Callout>
 
 Looking at the log above, it is not immediately obvious what is going on. This
 is even less obvious when the spaces exist in a sentence, or when the text
