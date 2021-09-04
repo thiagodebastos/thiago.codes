@@ -173,11 +173,11 @@ html {
   @apply text-gray-800 dark:text-gray-50 bg-indigo-50 dark:bg-gray-800;
 }
 
-.prose .remark-code-title {
+.prose .rehype-code-title {
   @apply px-5 py-3 font-mono text-sm font-bold text-gray-800 bg-gray-200 border border-b-0 border-gray-200 rounded-t dark:text-gray-200 dark:border-gray-700 dark:bg-gray-800;
 }
 
-.prose .remark-code-title + pre {
+.prose .rehype-code-title + pre {
   @apply mt-0 rounded-t-none;
 }
 

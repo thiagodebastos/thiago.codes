@@ -16,7 +16,7 @@ export function Callout({ children, colour, title }) {
   }
 
   const styles = {
-    base: `border-l-4 rounded-md shadow-md px-6 py-1 text-gray-800`,
+    base: `border-l-4 rounded-md shadow-md px-6 py-1 mb-8 text-gray-800`,
     coloursLight,
     coloursDark
   }
