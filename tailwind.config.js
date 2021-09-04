@@ -103,8 +103,8 @@ module.exports = {
               fontStyle: 'normal',
               letterSpacing: '-0.25px',
             },
-            strong:{
-              color: 'unset'
+            strong: {
+              color: 'unset',
             },
             table: {
               display: 'block',
