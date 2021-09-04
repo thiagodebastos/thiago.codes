@@ -90,7 +90,7 @@ html {
 }
 
 .prose code {
-  @apply font-normal text-xs text-green-700 dark:text-gray-200 px-2 pt-1.5 pb-1 border border-green-200 dark:border-gray-800 rounded-md bg-green-200 dark:bg-gray-900;
+  @apply font-normal text-xs text-green-700 dark:text-gray-200 px-1 py-0.5 border border-green-200 dark:border-gray-800 rounded-md bg-green-200 dark:bg-gray-900;
   word-break: keep-all;
 }
 
@@ -173,11 +173,11 @@ html {
   @apply text-gray-800 dark:text-gray-50 bg-indigo-50 dark:bg-gray-800;
 }
 
-.prose .remark-code-title {
+.prose .rehype-code-title {
   @apply px-5 py-3 font-mono text-sm font-bold text-gray-800 bg-gray-200 border border-b-0 border-gray-200 rounded-t dark:text-gray-200 dark:border-gray-700 dark:bg-gray-800;
 }
 
-.prose .remark-code-title + pre {
+.prose .rehype-code-title + pre {
   @apply mt-0 rounded-t-none;
 }
 
