@@ -12,26 +12,108 @@ layout: Article
 <Callout title="What you will learn">
   * How to use `switch` to execute conditional logic
   * The differences between `if` and `switch`
-  * When to use `break` vs `return`
+  * When to use `break` vs `return` in a `switch` statement
 </Callout>
 
+```js
+const name = "fhelipe"
 
-```js:"food.ks"
+let isRightPerson
 
-const foodBowl = "Papaya Salad";
+switch(name) {
+  case "james":
+    isRightPerson = false
+  case "fhelipe":
+    isRightPerson = true
+  default:
+    isRightPerson = false
+}
 
-let isHealthy;
+isRightPerson // -> false
+```
 
-switch(foodBowl) {
-    case "Cheese Burger":
-      isHealthy = false;
-    case "Fatty Pizza":
-      isHealthy = false;
-      break;
-    case "Papaya Salad":
-      isHealthy = true;
-      break;
+<Callout colour="info" title="dont forget to `break`">
+  When in a switch statement, remember to `break` out of each `case` otherwise
+  the code will keep evaluating through each case. Think of it as a loop that
+  runs conditionally until a case fails.
+</Callout>
+
+```diff
+switch(name) {
+  case "james":
+    isRightPerson = false
++   break
+  case "fhelipe":
+    isRightPerson = true
++   break
+  default:
+    isRightPerson = false
+}
+
+isRightPerson // -> true
+```
+
+<Callout colour="warning" title="Watch what you pass into switch">
+  Remember, `switch` tests for the evaluated expression of the passed in
+  parameter. If you are testing for a `boolean` value, then pass the expected
+  value as the parameter. For example, if you are expecting `true` as the case,
+  then pass in `true` to switch, and test that each expression tested as a
+  case, evaluates to `true`.
+</Callout>
+
+```js
+const score = 90
+
+switch (score) {
+  case score > 50:
+    return 'great!'
+  default:
+    return 'better luck next time!'
+} // → 'better luck next time!'
+```
+
+The code above fails - although score is greater than 50, what is actually
+happening is that the case is testing that `90 === true`, which evauluates
+`false`. This has tripped me up a few times in the past. The correct way
+to do this is to pass `true` as a parameter to `switch`:
+
+
+```js
+switch (true) {
+  case score > 50:
+    return 'great!'
+  default:
+    return 'better luck next time!'
+} // → 'great!'
+```
+
+
+```js:student-results.js
+const studentResults = [
+  { name: 'fhelipe', score: 99 },
+  { name: 'manuel', score: 50 },
+  { name: 'salatiel', score: 82 },
+  { name: 'zuami', score: 73 },
+  { name: 'anjela', score: 60 },
+  { name: 'matteusz', score: 39 },
+]
+```
+
+```js:assign-grade-to-score.js
+const grades = ["fail", "pass", "credit", "distinction", "high distinction"]
+
+function assignGradeToScore(grade, score) {
+  return switch (true){
+    case grade <= 49:
+      return "fail"
+    case grade <= 64:
+      return "pass"
+    case grade <= 74:
+      return "credit"
+    case grade <= 84:
+      return "distinction"
     default:
-      isHealthy = false;
+      return "high distinction"
   }
+}
 ```
