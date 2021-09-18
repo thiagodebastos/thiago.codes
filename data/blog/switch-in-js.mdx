@@ -32,10 +32,11 @@ switch(name) {
 isRightPerson // -> false
 ```
 
-<Callout colour="info" title="dont forget to `break`">
+<Callout colour="danger" title="dont forget to `break`">
   When in a switch statement, remember to `break` out of each `case` otherwise
-  the code will keep evaluating through each case. Think of it as a loop that
-  runs conditionally until a case fails.
+  the code will continue to evaluate through each case, always ending in the
+  `default` case. Think of it as a loop that runs conditionally until a case
+  fails.
 </Callout>
 
 ```diff

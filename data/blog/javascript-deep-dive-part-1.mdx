@@ -1,0 +1,59 @@
+---
+title: ECMAScript Fundamentals
+seoTitle: ECMAScript Fundamentals
+abstract: Let\'s learn more about JavaScript as a language, starting with a
+  glossary of terms and grammar.
+series: Javascript Deep Dive
+isPublished: false
+tags: javascript, programming
+publishedOn:
+image: ''
+---
+
+In this series I want to explore Javascript, or rather ECMAScript, in depth.
+The reason for this is that I feel I am at a point in my career where I lack
+both correct terminology and succinct description for what is going on in the
+software I am writing, updating or evaluating.
+
+Ultimately, I want to improve my ability to communicate with other engineers in
+the field.
+
+<Callout title="What you will learn" colour="success">
+  * Glossary of terms
+  * Technical terminlogy 
+</Callout>
+
+### hosts and host environments
+
+For the most part, a host is an external specification such as [WHATWG
+HTML](https://html.spec.whatwg.org/). It interfaces with the ECMAScript
+specification via host layering points referred to as Annex
+[D](https://tc39.es/ecma262/multipage/host-layering-points.html#sec-host-layering-points)
+in the specification. The host further definines facilities - such as abstract
+operations - listed in Annex D. These network layering points can be thought of
+as interfaces, or 'blueprints' for communicating with ECMAScript.
+
+The web browser provides ECMAScript with a host environment for client-side
+computation consising of objects representing various features of a web
+application. Some of these objects include everything you would expect to find
+in HTML, such as windows, menus, pop-ups, dialog boxes, history, cookies etc.
+
+The host environment provides a means to connect ECMAScript code to events,
+such as keypresses or form submissions.
+
+<Callout title="Host environment" colour="info">
+  A _host environment_ is a particular choice of definition for all host-defined
+  facilities. A host environment typically includes objects or functions which
+  allow obtaining input and providing output as host-defined properties of the
+  global object.
+
+  [tc39](https://tc39.es/ecma262/multipage/overview.html#host-environment)
+</Callout>
+
+Similarly a web server provides a host environment for server side computation.
+This includes objects representing clients, files, requests and more.
+
+### object
+A collection of zero or more _properties_, each with _attributes_ that determine how each property can be used
+
+
