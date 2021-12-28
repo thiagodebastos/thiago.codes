@@ -121,5 +121,11 @@ Generate ssh and gpg credentials.
 ## Other
 
 * NerdFonts
-* 
+* Telegram
+* Signal
+
+Enable Function key for Keychron K3
+```bash
+echo 0 | sudo tee /sys/module/hid_apple/parameters/fnmode
+```
 
