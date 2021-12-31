@@ -129,3 +129,7 @@ Enable Function key for Keychron K3
 echo 0 | sudo tee /sys/module/hid_apple/parameters/fnmode
 ```
 
+TODO:
+- [ ] anaconda3
+- [ ] pytorch
+- [ ] tabby
