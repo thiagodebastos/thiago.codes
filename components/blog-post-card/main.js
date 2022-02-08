@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { Tag } from '@/modules/tag'
 import { useRouter } from 'next/router'
 
-export function BlogPostCard({ title, slug, abstract, isPublished, tags }) {
+export function BlogPostCard({ title, slug, abstract, /** isPublished, */ tags }) {
   const router = useRouter()
 
   function handleClick(e, label) {
