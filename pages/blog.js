@@ -29,11 +29,11 @@ export default function Home({ posts }) {
   const allTagsFromPosts = [...new Set(posts.map((p) => p.tags).flat())]
   const filters = {
     title: (title) =>
-      !!title
+      title
         ? sanitizeString(title).includes(sanitizeString(searchTerm))
         : true,
     tags: (tags) =>
-      !!tags
+      tags
         ? checkElementsAgainstArray({
           array: tags,
           elements: Array.from(searchTags),
