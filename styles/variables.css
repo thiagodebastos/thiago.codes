@@ -128,6 +128,8 @@
   --font-emphasis: 'Sriracha';
   --font-mono: monospace;
 
+  --font-normal: var(--font-sans) var(--font-md);
+
   /* Media Queries */
   --mq-sm: 640px;
   --mq-md: 768px;
