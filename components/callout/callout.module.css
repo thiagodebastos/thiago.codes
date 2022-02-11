@@ -21,13 +21,9 @@
   font-weight: bold;
   text-transform: uppercase;
   font-size: var(--font-md);
+  color: var(--color-gray-800) !important;
 }
 
-.icon {
-  width: var(--spacing-06);
-  height: var(--spacing-06);
-  margin-right: var(--spacing-03);
-}
 
 .success {
   --color-bg: var(--color-green-50);

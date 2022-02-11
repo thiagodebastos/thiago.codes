@@ -1,4 +1,7 @@
 :root {
+  --color-white: #fff;
+  --color-black: #000;
+
   --color-green-50: #f0fdf4;
   --color-green-100: #dcfce7;
   --color-green-200: #bbf7d0;
@@ -120,11 +123,21 @@
   --font-xl: var(--font-24);
   --font-2xl: var(--font-30);
 
-  --font-family-sans: Inter, 'Helvetica Neue', Arial, sans-serif;
-  --font-family-serif: Roboto, 'Georgia', Times, serif;
-  --font-family-emphasis: Sriracha;
-  --font-family-mono: monospace;
+  --font-sans: Inter, 'Helvetica Neue', Arial, sans-serif;
+  --font-serif: Roboto, 'Georgia', Times, serif;
+  --font-emphasis: 'Sriracha';
+  --font-mono: monospace;
+
+  /* Media Queries */
+  --mq-sm: 640px;
+  --mq-md: 768px;
+  --mq-lg: 1024px;
+  --mq-xl: 1280px;
+  --mq-2xl: 1536px;
+
+  --width-3xl: 48rem;
 }
+
 .dark {
   --color-primary: var(--color-purple-200);
   --color-secondary: var(--color-blue-200);

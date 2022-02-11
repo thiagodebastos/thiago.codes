@@ -1,0 +1,16 @@
+/* fixed invisible xl:visible opacity-80 z-0 bottom-[-6px] left-0 pointer-events-none */
+.wrapper {
+  position: fixed;
+  visibility: hidden;
+  opacity: 0.8;
+  z-index: 0;
+  bottom: -7px;
+  left: 0;
+  pointer-events: none;
+}
+
+@media screen and (min-width: 1280px) {
+  .wrapper {
+    visibility: visible;
+  }
+}

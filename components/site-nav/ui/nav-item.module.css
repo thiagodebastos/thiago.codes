@@ -1,0 +1,24 @@
+.nav-item {
+  color: var(--color);
+  margin-right: var(--spacing-06);
+}
+
+.nav-item:first-of-type {
+  font-family: var(--font-emphasis);
+}
+
+.nav-item:hover {
+  --color: var(--color-green-500);
+}
+
+.active {
+  --color: var(--color-green-500);
+}
+
+:global(.dark) .nav-item {
+  --color: var(--color-gray-200);
+}
+
+:global(.dark) .nav-item.active {
+  --color: var(--color-green-300);
+}

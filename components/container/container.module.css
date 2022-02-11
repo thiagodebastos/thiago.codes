@@ -1,0 +1,32 @@
+.wrapper {
+  --bg-color: var(--color-white);
+  --padding: var(--spacing-08) 0;
+
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  padding: var(--padding);
+}
+
+@media only screen and (min-width: var(--mq-sm)) {
+  --padding: var(--spacing-12) 0;
+}
+
+:global(.dark) .wrapper {
+  --bg-color: var(--color-black);
+}
+
+.skip-nav {
+}
+
+.logo {
+  font-family: var(--font-emphasis);
+  color: var(--color);
+  margin-right: var(--spacing-06);
+}
+
+.main {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

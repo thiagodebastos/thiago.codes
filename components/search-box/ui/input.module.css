@@ -1,4 +1,40 @@
-.input {
+.container {
   position: relative;
   width: 100%;
+}
+
+.input {
+  --border-color: var(--color-green-300);
+  --border-width: var(--spacing-01);
+  --color-text: var(--color-purple-700);
+  --input-bg-color: var(--color-white);
+  --outline: solid var(--color-purple-500) var(--spacing-01);
+
+  position: relative;
+  width: 100%;
+  display: block;
+  background-color: var(--input-bg-color);
+
+  padding: var(--spacing-04);
+  color: var(--color-text);
+  border-width: var(--border-width);
+  border-color: var(--border-color);
+}
+
+:global(.dark) .input {
+  --border-color: var(--color-gray-900);
+  --input-bg-color: var(--color-gray-800);
+  --color-text: var(--color-blue-200);
+}
+
+.input:focus,
+.input:focus-visible {
+  outline: var(--outline);
+}
+
+.counter {
+  position: absolute;
+  color: var(--color-green-500);
+  top: var(--spacing-05);
+  right: var(--spacing-06);
 }
