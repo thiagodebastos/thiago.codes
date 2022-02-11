@@ -16,7 +16,7 @@ describe('GIVEN 1 blog posts exist with "Typescript" in the title', () => {
         .get('[data-cy="tag_typescript"')
         .first()
         .click()
-      cy.get('[data-cy="tag_typescript"]').should('have.lengthOf.above', 1)
+      cy.get('[data-cy="tag_typescript"]').should('have.lengthOf', 1)
     })
   })
 })
