@@ -1,0 +1,58 @@
+---
+title: Excessive Re-rendering in ReactJS
+seoTitle: Excessive Re-rendering in ReactJS
+abstract: Optimise ReactJS by preventing unnecessary re-renders
+isPublished: false
+tags: javascript, react, performance
+publishedOn:
+image: ''
+layout: Article
+---
+
+## React anti-patterns leading to re-render issues
+
+Assigning an object inline here will create a new object on every render
+
+```jsx
+<div style={{position: 'relative'}}>
+```
+
+#### Fix
+If the style is a static object (no props), assign it to a variable outside the component
+
+```jsx
+// outside component
+const styles = {{position: 'relative'}}
+
+// inside component
+<div style={styles}>
+```
+
+### Returning an assignment can lead to confusion and unintended consequences
+
+Eslint should warn you with [no-return-assign](https://eslint.org/docs/rules/no-return-assign):
+
+```jsx
+<div ref={(comp) => this.formContainer = comp}>
+```
+
+#### Fix
+
+https://stackoverflow.com/questions/48413299/arrow-function-should-not-return-assignment/48413823#48413823
+
+1. Don't return the assignment, by wrapping in parens:
+
+```jsx
+<div ref={(comp) => { this.formContainer = comp }}>
+```
+
+2. Assign to class method:
+
+```jsx
+// class method
+getFormContainerRef = (comp) => this.formContainer = comp;
+
+// inside render()
+<div ref={this.getFormContainerRef}>
+```
+
