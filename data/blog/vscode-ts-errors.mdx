@@ -53,10 +53,16 @@ every file in your project.
 }
 ```
 
-3. In VSCode, open the `Command Palette`, search for and select `Tasks: Run Task`, and finally choose `npm: watch`.
+3. In VSCode, open the `Command Palette`, search for and select `Tasks: Run
+   Task`, and finally choose `npm: watch`.
 
-And voila! VSCode opens a terminal with the running task, and all type errors are sent through to the Problems tab. No more missed type errors 🙌
+And voila! VSCode opens a terminal with the running task, and all type errors
+are sent through to the Problems tab. No more missed type errors 🙌
 
 ### Performance issues
 
-VSCode settings such as `autoSave` can cause performance issues, especially on larger projects. This is because the type check task will re-run on every save, and those changes have to then be filtered and propagated to VSCode's Problems tab each time. To prevent this, set `autoSave` to `false` in your workspace settings.
+VSCode settings such as `autoSave` can cause performance issues, especially on
+larger projects. This is because the type check task will re-run on every save,
+and those changes have to then be filtered and propagated to VSCode's Problems
+tab each time. To prevent this, set `autoSave` to `false` in your workspace
+settings.
