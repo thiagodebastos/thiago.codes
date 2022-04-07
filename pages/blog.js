@@ -105,7 +105,6 @@ export async function getStaticProps() {
   const posts = await getAllFilesFrontMatter('blog')
   const publishedPosts = posts.filter(p => p.isPublished)
   const isDevelopment = process.env.NODE_ENV === 'development'
-  console.log(process.env.NODE_ENV)
 
   return {
     props: {
