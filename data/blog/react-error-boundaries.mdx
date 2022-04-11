@@ -1,0 +1,189 @@
+---
+title: React Error Boundaries and when to use them
+seoTitle: React Error Boundaries
+abstract: Mitigate app crashes when components fail
+isPublished: false
+series: React Developer
+tags: intermediate, react
+publishedOn:
+image: ''
+layout: Article
+---
+
+
+<Callout title="What you will learn" colour="success">
+  * What error boundaries are
+  * How to use error boundaries in React
+  * When to use error boundaries in React
+</Callout>
+
+## The cost in money and tears of apps that crash
+
+[Skip to the point!](#what-is-an-error-boundary-in-react)
+
+Picture this - you have a flight to catch and are running late to the airport,
+so you decide to check in online to save some time. You fill in your booking
+details, followed by several forms until you get near the end, where after
+selecting a drop-down, the browser screen goes white. You hit back, and are
+forced to re-fill most of the form. Again, you end up with a white screen. No
+error, no message, so you call customer service, who complete the check-in
+manually.
+
+This is a terrible user experience. Not only has it cost the customer their
+time and left them frustrated, but flow-on effects ensue:
+
+* cost of customer service attending to issue
+* cost of several layers of team members assessing the issue
+* cost in development time in locating the source of the app breaking
+* cost of spinning up backup servers to restart the app if the crash results in
+  the backend crashing for any reason
+
+<Callout colour="danger"> 
+  Crashes cost money, time and lead to developer burnout.
+</Callout>
+
+And now picture this - you are working on fixing the aforementioned issue. You
+`npm run dev` and wait for the local development server to spin up. You go
+through the form flow yourself, filling it in with some dummy data, and 💥,
+everything explodes. You feel confident that you're close to the root of the
+issue. You `npm run dev` again, wait a while, go through the form again, and
+💥! So, again, `npm run dev`, wait a while, wish you had some proper debugging
+set up, ask yourself why you got lazy, get back to that same form element
+before it crashes again. 
+
+I care greatly for the user experience as well as the developer experience, and
+in this case much can be said for how the app ended up in such a state in the
+first place - we could have used test driven development or set up local
+debugging, however for this post, I want to focus on error boundaries and how
+using them effectively could have saved a lot of pain and money in this
+situation.
+
+
+## What is an Error Boundary in React?
+
+<Callout colour="info" title="ErrorBoundary lifecycle methods"> 
+`static getDerivedStateFromError` is used to update state which can be used show the
+fallback UI on the next render.
+
+`componentDidCatch` can be used to log information, either to the console or
+something like Winston.
+</Callout>
+
+In React, an error boundary is a component that acts like a Javascript `catch`.
+It will catch any errors in their child component tree, and render a fallback
+UI in place of the component tree that crashed.
+
+The React docs define an error boundary as a class component that defines one
+or both of the lifecycle methods `static getDerivedStateFromError()` or
+`componentDidCatch()`.
+
+<Callout colour="warning" title="Watch out">
+  Error boundaries are not bullet proof. They will not catch errors for:
+  * Event handlers
+  * Asynchronous code
+  * Server side rendering
+  * Errors thrown in the error boundary itself
+</Callout>
+
+
+![Error boundaries example](/static/images/react-error-boundaries-1.gif)
+
+## How to create an Error Boundary in React
+
+Now that we've built some empathy for our end users, ourselves, our company and
+fellow developers, let's get hands on and write an  `ErrorBoundary` class. This
+component will be responsible for:
+
+* calling a logging service, or logging to the console
+* rendering a fallback component on error
+
+```jsx
+import { Component, useState } from 'react'
+
+class ErrorBoundary extends Component {
+  constructor(props) {
+    super(props)
+    this.state = { hasError: false }
+  }
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true }
+  }
+
+  componentDidCatch(error, errorInfo) {
+    console.error(error, errorInfo)
+  }
+  render() {
+    if (this.state.hasError) {
+      return <h2>Something went wrong.</h2>
+    }
+    return this.props.children
+  }
+}
+```
+
+We can now use our `ErrorBoundary` component anywhere within our component
+tree, and any time a component within its child component tree emits an error,
+we will show the fallback UI message.
+
+## Where to use an _ErroBoundary_ Component in React?
+
+Where to use our `ErrorBoundary` component is now up to you. In our use case,
+we wrapped parts of the broken form in individual error boundaries if that part
+of the form was optional. We could have also wrapped the entire form, or even
+the entire page component in an error boundary.
+
+At the very least, you could wrap your app in an error boundary so that in case
+of a crash, you can render a predictable fallback UI.
+
+
+Below is an example similar to the one found in the React docs that
+demonstrates the difference in the UI between a shared error boundary and
+individual error boundaries. This is the code used to create the UI experience seen in the gif above.
+
+
+```jsx
+
+function BrokenCounter() {
+  const [count, setCount] = useState(0)
+
+  function handleClick() {
+    setCount(count + 1)
+  }
+
+  if (count === 5) {
+    throw new Error('Something broke')
+  }
+
+  return <h1 onClick={handleClick}>{count}</h1>
+}
+
+export default function App() {
+  return (
+    <div className="App">
+      <p>Example of error boundaries introduced in React 16</p>
+      <p>Shared Error Boundary</p>
+      <ErrorBoundary>
+        <BrokenCounter />
+        <BrokenCounter />
+      </ErrorBoundary>
+      <hr />
+      <p>Individual Error Boundaries</p>
+      <ErrorBoundary>
+        <BrokenCounter />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <BrokenCounter />
+      </ErrorBoundary>
+    </div>
+  )
+}
+
+```
+
+## Conclusion
+
+In this post you learned that error boundaries in react act like a JavaScript
+`catch {}` block for your components. This simple tool forms another layer in
+mitigating losses in customers, revenue, and developer burnout. Now go forth,
+implement an `ErrorBoundary`, and feel more confident in your apps!
