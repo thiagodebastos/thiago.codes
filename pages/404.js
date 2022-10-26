@@ -21,12 +21,14 @@ export default function NotFound() {
             We couldn&#39;t find the page you were looking for.
           </p>
         </div>
-        <Link href="/">
-          <a className="w-64 p-1 mx-auto font-bold text-center text-black bg-gray-100 sm:p-4 dark:bg-gray-900 rounded-md dark:text-white">
+        <Link
+          href="/"
+          className="w-64 p-1 mx-auto font-bold text-center text-black bg-gray-100 sm:p-4 dark:bg-gray-900 rounded-md dark:text-white">
+          
             Return Home
-          </a>
+          
         </Link>
       </div>
     </Container>
-  )
+  );
 }

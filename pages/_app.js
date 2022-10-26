@@ -1,4 +1,4 @@
-import '@/styles/global.css'
+import '@/styles/output.css'
 
 import { ThemeProvider } from 'next-themes'
 

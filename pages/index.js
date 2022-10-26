@@ -29,7 +29,7 @@ export default function HomePage({ posts }) {
           <BlogPostCard key={frontMatter.title} {...frontMatter} />
         ))}
         <div className="link-container">
-          <Link href="/blog" passHref={true}>
+          <Link href="/blog" passHref={true} legacyBehavior>
             <a className="text-pink-500">All posts <span className="link-arrow">-&gt;</span></a>
           </Link>
         </div>
@@ -48,7 +48,7 @@ export default function HomePage({ posts }) {
       `}</style>
 
     </Container>
-  )
+  );
 }
 
 export async function getStaticProps() {

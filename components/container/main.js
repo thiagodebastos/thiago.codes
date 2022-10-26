@@ -58,38 +58,38 @@ export function Container(props) {
           Skip to content
         </a>
         <div>
-          <NextLink href="/">
-            <a
-              className={`font-emphasis mr-8  ${
-                router.asPath === '/'
-                  ? 'text-green-600 dark:text-green-300'
-                  : 'text-gray-900 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-800'
-              }`}
-            >
+          <NextLink
+            href="/"
+            className={`font-emphasis mr-8  ${
+              router.asPath === '/'
+                ? 'text-green-600 dark:text-green-300'
+                : 'text-gray-900 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-800'
+            }`}>
+            
               Thiago de Bastos
-            </a>
+            
           </NextLink>
-          <NextLink href="/blog">
-            <a
-              className={`p-1 p-4 mr-2 hover:bg-gray-50 rounded-md dark:hover:bg-gray-800 ${
-                router.asPath.includes('/blog')
-                  ? 'text-green-600 dark:text-green-300 bg-green-50 hover:bg-green-50 dark:bg-gray-800'
-                  : 'text-gray-900 dark:text-gray-100'
-              }`}
-            >
+          <NextLink
+            href="/blog"
+            className={`p-1 p-4 mr-2 hover:bg-gray-50 rounded-md dark:hover:bg-gray-800 ${
+              router.asPath.includes('/blog')
+                ? 'text-green-600 dark:text-green-300 bg-green-50 hover:bg-green-50 dark:bg-gray-800'
+                : 'text-gray-900 dark:text-gray-100'
+            }`}>
+            
               Blog
-            </a>
+            
           </NextLink>
-          <NextLink href="/about">
-            <a
-              className={`p-1 p-4 hover:bg-gray-50 rounded-md dark:hover:bg-gray-800 ${
-                router.asPath === '/about'
-                  ? 'text-green-600 dark:text-green-300 bg-green-50 hover:bg-green-50 dark:bg-gray-800'
-                  : 'text-gray-900 dark:text-gray-100'
-              }`}
-            >
+          <NextLink
+            href="/about"
+            className={`p-1 p-4 hover:bg-gray-50 rounded-md dark:hover:bg-gray-800 ${
+              router.asPath === '/about'
+                ? 'text-green-600 dark:text-green-300 bg-green-50 hover:bg-green-50 dark:bg-gray-800'
+                : 'text-gray-900 dark:text-gray-100'
+            }`}>
+            
               About
-            </a>
+            
           </NextLink>
         </div>
         <button
@@ -131,5 +131,5 @@ export function Container(props) {
         {mounted && <FixedBgImage imageUrl="/static/images/undraw_counting_stars_man.svg" />}
       </main>
     </div>
-  )
+  );
 }
